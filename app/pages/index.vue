@@ -2,6 +2,6 @@
     <h1>index page</h1>
 </template>
 
-<script>
+<script setup>
 navigateTo('/login')
 </script>

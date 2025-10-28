@@ -4,5 +4,5 @@
         <div class="bg-yellow-400 h-full"></div>
     </div>
 </template>
-<script></script>
+<script setup></script>
 <style></style>
