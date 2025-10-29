@@ -1,10 +1,11 @@
 <template>
-    <div class="h-20 bg-gray-950">
+    <!-- <div class="h-20 bg-gray-950">
         <div>
             <NuxtImg class="flex justify-start h-18" src="/images/17975497.png" alt="Logo"/>
         </div>
         <div class="flex justify-end text-white h-18">register</div>
-    </div>
+    </div> -->
+    <navbar/>
     <div class="h-screen flex items-center justify-center bg-gray-900">
     <UCard class="bg-gray-800 w-fit text-white">
         <template #header>
@@ -12,11 +13,11 @@
         </template>
 
         <UForm class="space-y-4" @submit="login()">
-            <UFormField size="xl">
-                <UInput v-model="data.email" icon="i-lucide-mail" class="min-w-80 md:min-w-100" placeholder="Enter your email" type="email" required />
+            <UFormField size="xl" icon="i-lucide-mail">
+                <UInput v-model="data.email"  class="min-w-80 md:min-w-100" placeholder="Enter your email" type="email" required />
             </UFormField>
-            <UFormField size="xl">
-                <UInput v-model="data.password" icon="i-lucide-square-asterisk" class="min-w-80 md:min-w-100" placeholder="Enter your password" type="password" required />
+            <UFormField size="xl" icon="i-lucide-square-asterisk">
+                <UInput v-model="data.password"  class="min-w-80 md:min-w-100" placeholder="Enter your password" type="password" required />
             </UFormField>
             <UButton 
                 class="min-w-80 md:min-w-100" 
