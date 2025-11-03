@@ -11,13 +11,13 @@ export default defineEventHandler(async (event) => {
 
     if (isNaN(studentId)) {
         throw createError({ statusCode: 400, statusMessage: 'Invalid student ID.' });
-  }
+    }
 
     const deleted = await deleteStudent(studentId);
     if (!deleted) {
         throw createError({ statusCode: 404, statusMessage: `Student ${studentId} not found.` });
     }
 
-    event.node.res.statusCode = 204;
+    event.node.res.statusCode = 200;
     return { message: `Student ${studentId} deleted successfully` };
 });

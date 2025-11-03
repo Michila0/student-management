@@ -1,54 +1,44 @@
 <template>
     <navbar/>
-    <UCard>
+    
+    <StudentForm/>
+    
+    <UCard class="flex justify-center">
         <template #header>
             <p>Student List</p>
         </template>
         <template #default>
-
-            <UTable :data="data" class="flex-1" />
+            <table>
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>age</th>
+                  <th>classroom</th>
+                  <th>address</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="student in data" :key="student.id">
+                  <td>{{ student.id }}</td>
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.age }}</td>
+                  <td>{{ student.classroom }}</td>
+                  <td>{{ student.address }}</td>
+                </tr>
+              </tbody>
+            </table>
         </template>
     </UCard>
 </template>
 
 
 <script setup lang="ts">
+import StudentForm from '~/components/StudentForm.vue';
+
 const data = ref([
-  {
-    id: '4600',
-    date: '2024-03-11T15:30:00',
-    status: 'paid',
-    email: 'james.anderson@example.com',
-    amount: 594
-  },
-  {
-    id: '4599',
-    date: '2024-03-11T10:10:00',
-    status: 'failed',
-    email: 'mia.white@example.com',
-    amount: 276
-  },
-  {
-    id: '4598',
-    date: '2024-03-11T08:50:00',
-    status: 'refunded',
-    email: 'william.brown@example.com',
-    amount: 315
-  },
-  {
-    id: '4597',
-    date: '2024-03-10T19:45:00',
-    status: 'paid',
-    email: 'emma.davis@example.com',
-    amount: 529
-  },
-  {
-    id: '4596',
-    date: '2024-03-10T15:55:00',
-    status: 'paid',
-    email: 'ethan.harris@example.com',
-    amount: 639
-  }
+  { id: 1, name: "Alice Johnson", age: 15, classroom: "10A", address: "45 Oak St" },
+  { id: 2, name: "Bob Smith", age: 14, classroom: "9B", address: "10 Pine Rd" },
+  { id: 3, name: "Charlie Brown", age: 16, classroom: "10B", address: "77 Elm Ave" },
 ])
 </script>
-
