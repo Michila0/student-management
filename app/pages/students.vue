@@ -1,11 +1,11 @@
 <template>
-    <StudentForm/>
+    <!-- <StudentForm/> -->
 
-    <UCard class="flex justify-center">
-        <template #default>
+    <div class="flex justify-center">
+        <!-- <template #default> -->
             <StudentTable/>
-        </template>
-    </UCard>
+        <!-- </template> -->
+    </div>
 </template>
 
 <script setup lang="ts">

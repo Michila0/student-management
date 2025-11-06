@@ -5,7 +5,6 @@
         </div>
         <div class="flex justify-end text-white h-18">register</div>
     </div> -->
-    <navbar/>
     <div class="h-screen flex items-center justify-center bg-gray-900">
     <UCard class="bg-gray-800 w-fit text-white">
         <template #header>
@@ -33,6 +32,13 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: false
+})
+
+import { ref } from 'vue'
+const toast = useToast()
+
 const data = ref({
   email: '',
   password: ''
@@ -42,6 +48,7 @@ const isLoading = ref(false)
 
 const login = async () => {
   console.log('login start...')
+  isLoading.value = true
   
   try {
     const respose = await $fetch('api/login', {
@@ -50,13 +57,27 @@ const login = async () => {
     });
 
     console.log('Login response', respose)
+    
+    toast.add({
+      title: 'Successful',
+      description: 'Successfully logged in.',
+      // icon: 'i-lucide-check-circle',
+      color: 'success',
+    })
     navigateTo('/dashboard')
   }
   catch(error){
     console.log('Login failed')
     console.log('error', error.data)
 
-    alert(error.data.statusMessage)
+    // alert(error.data.statusMessage)
+
+    toast.add({
+      title: 'Error',
+      description: 'Login failed. Please try again.',
+      // icon: 'i-lucide-x-octagon',
+      color: 'error',
+    })
   }
 }
 </script>
