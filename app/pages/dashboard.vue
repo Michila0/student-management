@@ -1,44 +1,26 @@
 <template>
-    <navbar/>
-    
-    <StudentForm/>
-    
-    <UCard class="flex justify-center">
+  <UCard class="max-w-md mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
+        <div class="m-5 grid grid-cols-4 gap-4">
+      <UCard v-for="item in studentCount" :class="item.class">
         <template #header>
-            <p>Student List</p>
+          <div class="w-full text-center text-2xl font-semibold text-black">All Student</div>
         </template>
-        <template #default>
-            <table>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>age</th>
-                  <th>classroom</th>
-                  <th>address</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="student in data" :key="student.id">
-                  <td>{{ student.id }}</td>
-                  <td>{{ student.name }}</td>
-                  <td>{{ student.age }}</td>
-                  <td>{{ student.classroom }}</td>
-                  <td>{{ student.address }}</td>
-                </tr>
-              </tbody>
-            </table>
-        </template>
-    </UCard>
+        <div class="text-black text-5xl text-semibold w-full text-center">{{ item.value }}</div>
+      </UCard>
+    </div>
+  </UCard>
+    
+    
 </template>
 
 
 <script setup lang="ts">
-import StudentForm from '~/components/StudentForm.vue';
+const studentCount = ref([]);
 
-const data = ref([
-  { id: 1, name: "Alice Johnson", age: 15, classroom: "10A", address: "45 Oak St" },
-  { id: 2, name: "Bob Smith", age: 14, classroom: "9B", address: "10 Pine Rd" },
-  { id: 3, name: "Charlie Brown", age: 16, classroom: "10B", address: "77 Elm Ave" },
-])
+const getDashboardData = async () => {
+    const response = await $fetch('/api/students/count');
+    console.log(response);
+    
+    studentCount.value = response;
+}
 </script>

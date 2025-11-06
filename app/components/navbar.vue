@@ -1,5 +1,5 @@
 <template>
-    <div class="h-20 bg-gray-950">
+    <div class="h-20 bg-gray-900">
         <div> 
 
         <NuxtImg class="flex justify-start h-18" src="/images/17975497.png" alt="Logo"/>

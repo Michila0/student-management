@@ -71,11 +71,15 @@ import { ref } from 'vue'
 interface StudentData {
   name: string
   age: number | null
+  classroom: string
+  address: string
 }
 
 const form = ref<StudentData>({
   name: '',
   age: null,
+  classroom: '',
+  address: '',
 })
 
 const loading = ref(false)
@@ -111,8 +115,8 @@ const createStudent = async () => {
       errorMessage.value = e.statusMessage || `Failed to create student. Status: ${e.statusCode}`
     } else if (student.value) {
       successMessage.value = `Student ${student.value.name} created successfully with ID: ${student.value.id}`
-      
-      form.value = { name: '', age: null }
+
+      form.value = { name: '', age: null , classroom: '', address: ''}
     }
 
   } catch (err) {
