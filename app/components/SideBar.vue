@@ -28,6 +28,13 @@ const items = ref<NavigationMenuItem[]>([
       type: 'link',
       to: '/students'
     },
+    
+    {
+      label: 'Marks',
+      icon: 'i-lucide-book-check',
+      type: 'link',
+      to: '/marks'
+    },
   ]
 ])
 </script>

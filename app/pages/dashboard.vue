@@ -62,31 +62,25 @@ const getStudent = async () => {
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-// Define a reactive variable to hold the metrics data
+
 const studentMetrics = ref([
-  { title: 'Total Students', count: 0, class: 'bg-blue-200' },
+  { title: 'Total Students', count: 0 || '', class: 'bg-blue-200' },
 ]);
 
-// Define the type for the expected API response (adjust this if your student objects are different)
 interface Student {
   id: number;
   name: string;
-  // ... other student properties
 }
 
 const getStudent = async () => {
   try {
-    // 1. Fetch the data
-    const response = await $fetch<Student[]>('/api/student/', { // Use type casting for better safety
+    const response = await $fetch<Student[]>('/api/student/', {
       method: 'GET',
     });
     
-    // Check if the response is an array before processing
     if (Array.isArray(response)) {
-      // 2. Calculate the total count
       const totalCount = response.length;
 
-      // 3. Update the reactive metric state
       studentMetrics.value = [
         { title: 'Total Students', count: totalCount, class: 'bg-blue-200' },
       ];
@@ -96,14 +90,12 @@ const getStudent = async () => {
     }
   } catch (error) {
     console.error('Error fetching students:', error);
-    // Optionally set the count to 0 or display an error message
     studentMetrics.value = [
       { title: 'Total Students', count: 'Error', class: 'bg-red-200' },
     ];
   }
 }
 
-// 4. Fetch the data when the component is mounted
 onMounted(() => {
   getStudent();
 });
