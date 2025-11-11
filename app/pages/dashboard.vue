@@ -38,9 +38,9 @@ const getStudent = async () => {
 
 <template>
   <UCard class="h-full bg-gray-800">
-    <template #header>
+    <!-- <template #header>
       <UButton color="info" @click="getStudent">Refresh</UButton>
-    </template>
+    </template> -->
 
     <div class="m-5">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -54,6 +54,7 @@ const getStudent = async () => {
             {{ metric.count }}
           </div>
         </UCard>
+        
       </div>
     </div>
 
@@ -65,6 +66,8 @@ import { ref, onMounted } from 'vue';
 
 const studentMetrics = ref([
   { title: 'Total Students', count: 0 || '', class: 'bg-blue-200' },
+  { title: 'Average GPA', count: 0 || '', class: 'bg-blue-200' },
+
 ]);
 
 interface Student {
@@ -80,9 +83,12 @@ const getStudent = async () => {
     
     if (Array.isArray(response)) {
       const totalCount = response.length;
+      const AverageGPA = response.reduce((sum, student) => sum + (student as any).gpa, 0) / totalCount || 0;
 
       studentMetrics.value = [
         { title: 'Total Students', count: totalCount, class: 'bg-blue-200' },
+        { title: 'Average GPA', count: AverageGPA, class: 'bg-blue-200' },
+
       ];
       console.log('Fetched students count:', totalCount);
     } else {
@@ -92,6 +98,7 @@ const getStudent = async () => {
     console.error('Error fetching students:', error);
     studentMetrics.value = [
       { title: 'Total Students', count: 'Error', class: 'bg-red-200' },
+      { title: 'Average GPA', count: 'Error', class: 'bg-red-200' },
     ];
   }
 }
