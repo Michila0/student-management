@@ -1,50 +1,13 @@
-<!-- <template>
-    <UCard class="h-full bg-gray-800">
-        <template #header>
-            <UButton color="info" @click="getStudent">Refresh</UButton>
-        </template>
-
-        <UCard class="max-w-md mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
-              <div class="m-5 grid grid-cols-4 gap-4">
-            <UCard v-for="item in studentCount" :class="item.class">
-              <template #header>
-                <div class="w-full text-center text-2xl font-semibold text-black">All Student</div>
-              </template>
-              <div class="text-black text-5xl text-semibold w-full text-center">{{ item.id.reverse([0]) }}</div>
-            </UCard>
-          </div>
-        </UCard>
-    </UCard>
-    
-    
-</template>
-
-
-<script setup lang="ts">
-const studentCount = ref([]);
-
-const getStudent = async () => {
-    try {
-    const response = await $fetch('/api/student/', {
-        method: 'GET',
-    });
-    console.log(response);
-    } catch (error) {
-        console.error('Error fetching students:', error);
-    }
-}
-</script> -->
-
-
 <template>
   <UCard class="h-full bg-gray-800">
-    <!-- <template #header>
-      <UButton color="info" @click="getStudent">Refresh</UButton>
-    </template> -->
+    <div class="justify-end flex">
+      <UButton color="info" icon="icon-circle-plus" to="/addStudentForm">Add Student</UButton>
+    </div>
 
     <div class="m-5">
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <UCard v-for="metric in studentMetrics" :key="metric.title" :class="metric.class">
+        <UCard v-for="metric in studentMetrics" :key="metric.title" :class=staticData.mapToClass(metric.class)>
           <template #header>
             <div class="w-full text-center text-xl font-semibold text-black">
               {{ metric.title }}
@@ -63,6 +26,8 @@ const getStudent = async () => {
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+
+const staticData = useStaticData();
 
 const studentMetrics = ref([
   { title: 'Total Students', count: 0 || '', class: 'bg-blue-200' },

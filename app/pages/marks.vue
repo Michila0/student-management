@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import AddStudentMark from './addStudentMark.vue';
+
+</script>
+
 <template>
-    <h1>marks</h1>
+    <div class="m-5 justify-end flex">
+      <UButton color="info" icon="icon-circle-plus" to="/addStudentMark">Add Marks</UButton>
+    </div>
+    <div class="flex justify-center">
+        <MarksTable/>
+    </div>
+
 </template>

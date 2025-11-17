@@ -32,12 +32,16 @@
 </template>
 
 <script setup>
+import { useUserStore } from '~/stores/user'
+import { ref } from 'vue'
+
 definePageMeta({
   layout: false
 })
-
-import { ref } from 'vue'
 const toast = useToast()
+
+
+const userStore = useUserStore()
 
 const data = ref({
   email: '',
@@ -57,6 +61,8 @@ const login = async () => {
     });
 
     console.log('Login response', respose)
+    userStore.user.name = data.value.email
+    navigateTo('/dashboard')
     
     toast.add({
       title: 'Successful',
@@ -64,7 +70,6 @@ const login = async () => {
       // icon: 'i-lucide-check-circle',
       color: 'success',
     })
-    navigateTo('/dashboard')
   }
   catch(error){
     console.log('Login failed')

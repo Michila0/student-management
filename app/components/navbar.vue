@@ -1,35 +1,18 @@
-<!-- <template>
-    <div class="h-20 w-full bg-gray-900 ">
-        <div class="flex flex-row"> 
-            <NuxtImg class="flex justify-start h-18" src="/images/17975497.png" alt="Logo"/>
-        </div>  
-        <div class="flex flex-row justify-end text-white h-18">
-            <UButton>Login</UButton>
-            <p>register</p>
-        </div>
-    </div>
-</template>
-
-<script></script> -->
-
-
 <template>
     <div class="h-20 w-full bg-gray-900 flex justify-between">
       <div><NuxtImg src="/images/17975497.png" class="h-20 py-3 px-10"></NuxtImg></div>
       <div class="flex justify-center items-center h-20 py-3 px-10">
-        <UButton color="info" icon="icon-circle-plus" to="/addStudentForm">New Student</UButton>
+        <!-- <UButton color="info" icon="icon-circle-plus" to="/addStudentForm">New Student</UButton> -->
 
         <UIcon name="i-lucide-circle-user-round" class="size-10" />
-        <p class="text-xl font-semibold pl-5">User</p>
+        <p class="text-xl font-semibold pl-5">{{ userStore.user.name }}</p>
       </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-// import { useUserStore } from '~/stores/user';
-// const userStore = useUserStore()
-
-
+import { useUserStore } from '~/stores/user';
+const userStore = useUserStore()
 </script>
 
 <style scoped>

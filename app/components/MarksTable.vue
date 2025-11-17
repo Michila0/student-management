@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
-    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Student List</h2>
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Student Mark List</h2>
     
     <div v-if="pending" class="text-center p-4 text-gray-500">
       <p>Loading student data...</p>
@@ -52,7 +52,7 @@ interface Student {
   id: number
   name: string
   age: number
-  grade: string
+  classroom: string
   address: string
 }
 
@@ -62,7 +62,7 @@ const columns = ref([
   { key: 'id', label: 'ID' },
   { key: 'name', label: 'Name' },
   { key: 'age', label: 'Age' },
-  { key: 'grade', label: 'Grade' },
+  { key: 'classroom', label: 'Classroom' },
   { key: 'address', label: 'Address' },
 ])
 </script>
