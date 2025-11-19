@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
-    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Student Mark List</h2>
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Marks List View</h2>
     
     <div v-if="pending" class="text-center p-4 text-gray-500">
       <p>Loading student data...</p>

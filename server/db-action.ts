@@ -1,18 +1,18 @@
 interface Student {
-  id: number;
-  name: string;
-  age: number;
-  classroom: string;
-  address: string;
+  id: number
+  name: string
+  email: string
+  currentGPA: number
+  grade: string
 }
 
 let studentIdCounter = 4;
 
 
 let students: Student[] = [
-  { id: 1, name: "Alice Johnson", age: 15, classroom: "10A", address: "45 Oak St" },
-  { id: 2, name: "Bob Smith", age: 14, classroom: "9B", address: "10 Pine Rd" },
-  { id: 3, name: "Charlie Brown", age: 16, classroom: "10B", address: "77 Elm Ave" },
+  { id: 1, name: "Alice Johnson", email: "alice.johnson@example.com", currentGPA: 3.8, grade: "10A"},
+  { id: 2, name: "Bob Smith", email: "bob.smith@example.com", currentGPA: 3.5, grade: "9B"},
+  { id: 3, name: "Charlie Brown", email: "charlie.brown@example.com", currentGPA: 3.9, grade: "10B"},
 ];
 
 export const fetchAllStudents = async (): Promise<Student[]> => {

@@ -1,8 +1,8 @@
 <template>
   <UCard class="h-full bg-gray-800">
-    <div class="justify-end flex">
+    <!-- <div class="justify-end flex">
       <UButton color="info" icon="icon-circle-plus" to="/addStudentForm">Add Student</UButton>
-    </div>
+    </div> -->
 
     <div class="m-5">
 

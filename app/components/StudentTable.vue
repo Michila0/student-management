@@ -31,7 +31,17 @@
             :class="{'bg-gray-50': index % 2 === 1}"
           >
             <td v-for="column in columns" :key="column.key" class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-              {{ student[column.key as keyof Student] }}
+              <template v-if="column.key === 'actions'">
+                <button 
+                  @click="viewStudent(student.id)" 
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-xs transition duration-150"
+                >
+                  View
+                </button>
+              </template>
+              <template v-else>
+                {{ student[column.key as keyof Student] }}
+              </template>
             </td>
           </tr>
         </tbody>
@@ -51,9 +61,9 @@ import { ref } from 'vue'
 interface Student {
   id: number
   name: string
-  age: number
+  email: string
+  currentGPA: number
   grade: string
-  address: string
 }
 
 const { data: students, pending, error } = await useFetch<Student[]>('/api/student/');
@@ -61,8 +71,13 @@ const { data: students, pending, error } = await useFetch<Student[]>('/api/stude
 const columns = ref([
   { key: 'id', label: 'ID' },
   { key: 'name', label: 'Name' },
-  { key: 'age', label: 'Age' },
+  { key: 'email', label: 'E-mail' },
+  { key: 'currentGPA', label: 'Current GPA' },
   { key: 'grade', label: 'Grade' },
-  { key: 'address', label: 'Address' },
+  { key: 'actions', label: 'Actions' },
 ])
+
+const viewStudent = (studentId: number) => {
+  console.log(`Viewing student ID: ${studentId}`);
+}
 </script>
