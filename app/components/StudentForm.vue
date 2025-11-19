@@ -16,11 +16,11 @@
       </div>
 
       <div>
-        <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+        <label for="email" class="block text-sm font-medium text-gray-700">Age</label>
         <input 
-          v-model.number="form.age"
-          id="age"
-          type="number"
+          v-model.number="form.email"
+          id="email"
+          type="text"
           required
           min="1"
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -38,7 +38,7 @@
         />
       </div>
 
-      <div>
+      <!-- <div>
         <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
         <input 
           v-model.number="form.address"
@@ -48,7 +48,7 @@
           min="1"
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
         />
-      </div>
+      </div> -->
 
       <button 
         type="submit"
@@ -70,16 +70,14 @@ import { ref } from 'vue'
 
 interface StudentData {
   name: string
-  age: number | null
+  email: string
   classroom: string
-  address: string
 }
 
 const form = ref<StudentData>({
   name: '',
-  age: null,
+  email: '',
   classroom: '',
-  address: '',
 })
 
 const loading = ref(false)
@@ -96,7 +94,7 @@ const createStudent = async () => {
   successMessage.value = ''
   errorMessage.value = ''
   
-  if (!form.value.name || !form.value.age) {
+  if (!form.value.name || !form.value.email) {
     errorMessage.value = 'Please fill out both the Name and Age fields.'
     return
   }
@@ -116,7 +114,7 @@ const createStudent = async () => {
     } else if (student.value) {
       successMessage.value = `Student ${student.value.name} created successfully with ID: ${student.value.id}`
 
-      form.value = { name: '', age: null , classroom: '', address: ''}
+      form.value = { name: '', email: '' , classroom: ''}
     }
 
   } catch (err) {
