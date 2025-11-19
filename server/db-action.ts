@@ -4,15 +4,17 @@ interface Student {
   email: string
   currentGPA: number
   grade: string
+  english: number
+  maths: number
 }
 
 let studentIdCounter = 4;
 
 
 let students: Student[] = [
-  { id: 1, name: "Alice Johnson", email: "alice.johnson@example.com", currentGPA: 3.8, grade: "10A"},
-  { id: 2, name: "Bob Smith", email: "bob.smith@example.com", currentGPA: 3.5, grade: "9B"},
-  { id: 3, name: "Charlie Brown", email: "charlie.brown@example.com", currentGPA: 3.9, grade: "10B"},
+  { id: 1, name: "Alice Johnson", email: "alice.johnson@example.com", currentGPA: 3.8, grade: "10A", english: 85, maths: 90},
+  { id: 2, name: "Bob Smith", email: "bob.smith@example.com", currentGPA: 3.5, grade: "9B", english: 78,maths:34  },
+  { id: 3, name: "Charlie Brown", email: "charlie.brown@example.com", currentGPA: 3.9, grade: "10B", english: 92, maths:34},
 ];
 
 export const fetchAllStudents = async (): Promise<Student[]> => {

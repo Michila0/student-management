@@ -30,8 +30,8 @@ import { ref, onMounted } from 'vue';
 const staticData = useStaticData();
 
 const studentMetrics = ref([
-  { title: 'Total Students', count: 0 || '', class: 'bg-blue-200' },
-  { title: 'Average GPA', count: 0 || '', class: 'bg-blue-200' },
+  { title: 'Total Students', count: 0 || '', class: 'bg-emerald-600' },
+  { title: 'Average GPA', count: 0 || '', class: 'bg-teal-200' },
 
 ]);
 

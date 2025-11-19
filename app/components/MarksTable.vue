@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
-    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Marks List View</h2>
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Marks List</h2>
     
     <div v-if="pending" class="text-center p-4 text-gray-500">
       <p>Loading student data...</p>
@@ -31,7 +31,23 @@
             :class="{'bg-gray-50': index % 2 === 1}"
           >
             <td v-for="column in columns" :key="column.key" class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-              {{ student[column.key as keyof Student] }}
+              <template v-if="column.key === 'actions'">
+                <button 
+                  @click="viewStudent(student.id)" 
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-xs transition duration-150"
+                >
+                  View
+                </button>
+              </template>
+              <template v-if="column.key === 'id'">{{ student.id }}</template>
+              <template v-if="column.key === 'name'">{{ student.name }}</template>
+              <template v-if="column.key === 'english'">{{ student.english }}%</template>
+              <template v-if="column.key === 'maths'">{{ student.maths }}%</template>
+              <template v-if="column.key === 'currentGPA'">{{ student.currentGPA }}</template>
+
+              <!-- <template v-else>
+                {{ student[column.key as keyof Student] }}
+              </template> -->
             </td>
           </tr>
         </tbody>
@@ -51,9 +67,9 @@ import { ref } from 'vue'
 interface Student {
   id: number
   name: string
-  age: number
-  classroom: string
-  address: string
+  english: number
+  maths: number
+  currentGPA: number
 }
 
 const { data: students, pending, error } = await useFetch<Student[]>('/api/student/');
@@ -61,8 +77,19 @@ const { data: students, pending, error } = await useFetch<Student[]>('/api/stude
 const columns = ref([
   { key: 'id', label: 'ID' },
   { key: 'name', label: 'Name' },
-  { key: 'age', label: 'Age' },
-  { key: 'classroom', label: 'Classroom' },
-  { key: 'address', label: 'Address' },
+  { key: 'english', label: 'English' },
+  { key: 'maths', label: 'Maths' },
+  { key: 'currentGPA', label: 'Current GPA' },
+  { key: 'actions', label: 'Actions' },
+])
+
+const viewStudent = (studentId: number) => {
+  console.log(`Viewing student ID: ${studentId}`);
+}
+
+const data = ref([
+  { id: 1, name: "Alice Johnson", english: 23, maths: 12 , currentGPA: 3.8},
+  { id: 2, name: "Bob Smith", english: 23, maths: 12 , currentGPA: 3.5},
+  { id: 3, name: "Charlie Brown", english: 23, maths: 12 , currentGPA: 3.9},
 ])
 </script>
