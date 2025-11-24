@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
+  <div class="max-w-4xl mx-auto mt-10 p-6 bg-red-100 shadow-xl rounded-lg">
     <h2 class="text-2xl font-semibold mb-6 text-gray-800">Marks List</h2>
     
     <div v-if="pending" class="text-center p-4 text-gray-500">
@@ -41,9 +41,9 @@
               </template>
               <template v-if="column.key === 'id'">{{ student.id }}</template>
               <template v-if="column.key === 'name'">{{ student.name }}</template>
-              <template v-if="column.key === 'english'">{{ student.english }}%</template>
-              <template v-if="column.key === 'maths'">{{ student.maths }}%</template>
-              <template v-if="column.key === 'currentGPA'">{{ student.currentGPA }}</template>
+              <!-- <template v-if="column.key === 'english'">{{ student.subjects.english }}%</template> -->
+              <template v-if="column.key === 'maths'">{{ student.subjects.Mathematics }}%</template>
+              <template v-if="column.key === 'currentGPA'">{{ student.gpa }}</template>
 
               <!-- <template v-else>
                 {{ student[column.key as keyof Student] }}
@@ -64,27 +64,28 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-interface Student {
-  id: number
-  name: string
-  english: number
-  maths: number
-  currentGPA: number
-}
+interface Marks {
+    id: number,
+    name: string,
+    subjects: {
+      Mathematics: string
+    },
+    gpa: number
+  }
 
-const { data: students, pending, error } = await useFetch<Student[]>('/api/student/');
+const { data: students, pending, error } = await useFetch<Marks[]>('/api/Marks/report', {server: false});
 
 const columns = ref([
   { key: 'id', label: 'ID' },
   { key: 'name', label: 'Name' },
   { key: 'english', label: 'English' },
-  { key: 'maths', label: 'Maths' },
-  { key: 'currentGPA', label: 'Current GPA' },
+  { key: 'Mathematics', label: 'Maths' },
+  { key: 'gpa', label: 'Current GPA' },
   { key: 'actions', label: 'Actions' },
 ])
 
 const viewStudent = (studentId: number) => {
-  console.log(`Viewing student ID: ${studentId}`);
+  navigateTo("../components/MarksDetails.vue");
 }
 
 const data = ref([

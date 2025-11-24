@@ -11,4 +11,7 @@ export default defineNuxtConfig({
     ]
   },
   modules: ['@nuxt/ui', '@nuxt/image', '@pinia/nuxt'],
+  routeRules: {
+    '/api/**': { proxy: 'http://edu-manage.us-east-2.elasticbeanstalk.com/api/**'}
+  }
 })

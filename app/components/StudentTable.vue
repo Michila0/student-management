@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
+  <div class="max-w-4xl mx-auto mt-10 p-6 bg-red-100 shadow-xl rounded-lg">
     <h2 class="text-2xl font-semibold mb-6 text-gray-800">Student List</h2>
     
     <div v-if="pending" class="text-center p-4 text-gray-500">
@@ -32,7 +32,7 @@
           >
             <td v-for="column in columns" :key="column.key" class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               <template v-if="column.key === 'actions'">
-                <button 
+                <button
                   @click="viewStudent(student.id)" 
                   class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-xs transition duration-150"
                 >
@@ -78,6 +78,7 @@ const columns = ref([
 ])
 
 const viewStudent = (studentId: number) => {
-  console.log(`Viewing student ID: ${studentId}`);
+  console.log(`Viewing student ID: ${studentId}`);
+  navigateTo("../students/${studentId}");
 }
 </script>
