@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UCard :class="staticData.mapToClass(props.metric.class)">
+    <UCard :class="staticData.mapToClass(props.metric.class)>
           <template #header>
             <div class="w-full text-center text-xl font-semibold text-black">
               {{ props.metric.title }}
@@ -14,6 +14,8 @@
 </template>
 
 <script setup>
+import { bg } from '@nuxt/ui/runtime/locale/index.js';
+
 
 const staticData = useStaticData();
 

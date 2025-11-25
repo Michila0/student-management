@@ -102,7 +102,7 @@ const createStudent = async () => {
   loading.value = true
   
   try {
-    const { data: student, error } = await useFetch<StudentResponse>('/api/student/', {
+    const { data: student, error } = await useFetch<StudentResponse>('/api/Students', {
       method: 'POST',
       body: form.value,
     })

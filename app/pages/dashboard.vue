@@ -51,7 +51,7 @@ const getStudent = async () => {
       // const AverageGPA = response.reduce((sum, student) => sum + (student as any).gpa, 0) / totalCount || 0;
 
       studentMetrics.value = [
-        { title: 'Total Students', count: response.totalStudents, class: 'bg-blue-200' },
+        { title: 'Total Students', count: response.totalStudents, class: 'bg-red-200' },
         { title: 'Average GPA', count: response.averageGPA.toFixed(2), class: 'bg-blue-200' },
 
       ];
