@@ -30,32 +30,32 @@ import { ref, onMounted } from 'vue';
 const staticData = useStaticData();
 
 const studentMetrics = ref([
-  { title: 'Total Students', count: 0 || '', class: 'bg-emerald-600' },
-  { title: 'Average GPA', count: 0 || '', class: 'bg-teal-200' },
+  { title: 'Total Students', count: 0 as number|| '', class: 'bg-emerald-600' },
+  { title: 'Average GPA', count: 0 as number|| '', class: 'bg-teal-200' },
 
 ]);
 
-interface Student {
-  id: number;
-  name: string;
+interface DashboardStats {
+  totalStudents: number;
+  averageGPA: number;
 }
 
 const getStudent = async () => {
   try {
-    const response = await $fetch<Student[]>('/api/Dashboard/stats', {
+    const response = await $fetch<DashboardStats[]>('/api/Dashboard/stats', {
       method: 'GET',
     });
     
-    if (Array.isArray(response)) {
-      const totalCount = response.length;
-      const AverageGPA = response.reduce((sum, student) => sum + (student as any).gpa, 0) / totalCount || 0;
+    if (response) {
+      // const totalCount = response.length;
+      // const AverageGPA = response.reduce((sum, student) => sum + (student as any).gpa, 0) / totalCount || 0;
 
       studentMetrics.value = [
-        { title: 'Total Students', count: totalCount, class: 'bg-blue-200' },
-        { title: 'Average GPA', count: AverageGPA, class: 'bg-blue-200' },
+        { title: 'Total Students', count: response.totalStudents, class: 'bg-blue-200' },
+        { title: 'Average GPA', count: response.averageGPA.toFixed(2), class: 'bg-blue-200' },
 
       ];
-      console.log('Fetched students count:', totalCount);
+      console.log('Stats fetched successfully:', response);
     } else {
       console.error('API response was not an array:', response);
     }
