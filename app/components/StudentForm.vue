@@ -2,7 +2,7 @@
   <div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
     <h2 class="text-2xl font-semibold mb-6 text-gray-800">Add New Student</h2>
     
-    <form @submit.prevent="createStudent" class="space-y-4">
+    <form  @submit.prevent="createStudent" class="space-y-4">
       
       <div>
         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
@@ -10,6 +10,7 @@
           v-model="form.name"
           id="name"
           type="text"
+          min="1"
           required
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
         />
@@ -18,9 +19,9 @@
       <div>
         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
         <input 
-          v-model.number="form.email"
+          v-model="form.email"
           id="email"
-          type="text"
+          type="email"
           required
           min="1"
           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -30,7 +31,7 @@
       <div>
         <label for="classroom" class="block text-sm font-medium text-gray-700">Classroom</label>
         <input 
-          v-model.number="form.classroom"
+          v-model="form.classRoom"
           id="classroom"
           type="text"
           required
@@ -38,17 +39,6 @@
         />
       </div>
 
-      <!-- <div>
-        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-        <input 
-          v-model.number="form.address"
-          id="address"
-          type="text"
-          required
-          min="1"
-          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div> -->
 
       <button 
         type="submit"
@@ -71,13 +61,13 @@ import { ref } from 'vue'
 interface StudentData {
   name: string
   email: string
-  classroom: string
+  classRoom: string
 }
 
 const form = ref<StudentData>({
   name: '',
   email: '',
-  classroom: '',
+  classRoom: '',
 })
 
 const loading = ref(false)
@@ -85,36 +75,30 @@ const successMessage = ref('')
 const errorMessage = ref('')
 
 
-interface StudentResponse {
-  id: number
-  name: string
-}
-
 const createStudent = async () => {
   successMessage.value = ''
   errorMessage.value = ''
   
-  if (!form.value.name || !form.value.email) {
-    errorMessage.value = 'Please fill out both the Name and Age fields.'
+  if (!form.value.name || !form.value.email || !form.value.classRoom) {
+    errorMessage.value = 'Please fill out the Name, Email, and Classroom fields.'
     return
   }
 
   loading.value = true
   
   try {
-    const { data: student, error } = await useFetch<StudentResponse>('/api/Students', {
+    const { data: student, error } = await useFetch<StudentData>('/api/Students', {
       method: 'POST',
       body: form.value,
     })
 
     if (error.value) {
-      // error.value may not be strongly typed; cast to any for accessing status properties
       const e: any = error.value
       errorMessage.value = e.statusMessage || `Failed to create student. Status: ${e.statusCode}`
     } else if (student.value) {
-      successMessage.value = `Student ${student.value.name} created successfully with ID: ${student.value.id}`
+      successMessage.value = `Student ${student.value.name} created successfully with ID: ${student.value.email}`
 
-      form.value = { name: '', email: '' , classroom: ''}
+      form.value = { name: '', email: '' , classRoom: ''}
     }
 
   } catch (err) {
