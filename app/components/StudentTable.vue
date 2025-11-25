@@ -66,7 +66,7 @@ interface Student {
   grade: string
 }
 
-const { data: students, pending, error } = await useFetch<Student[]>('/api/student/');
+const { data: students, pending, error } = await useFetch<Student[]>('/api/Students');
 
 const columns = ref([
   { key: 'id', label: 'ID' },
@@ -79,6 +79,6 @@ const columns = ref([
 
 const viewStudent = (studentId: number) => {
   console.log(`Viewing student ID: ${studentId}`);
-  navigateTo("../students/${studentId}");
+  navigateTo("/api/Students/{id}");
 }
 </script>

@@ -73,7 +73,7 @@ interface Marks {
     gpa: number
   }
 
-const { data: students, pending, error } = await useFetch<Marks[]>('/api/Marks/report', {server: false});
+const { data: students, pending, error } = await useFetch<Marks[]>('/api/Marks/report');
 
 const columns = ref([
   { key: 'id', label: 'ID' },

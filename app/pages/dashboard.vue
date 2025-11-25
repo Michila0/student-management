@@ -42,7 +42,7 @@ interface Student {
 
 const getStudent = async () => {
   try {
-    const response = await $fetch<Student[]>('/api/student/', {
+    const response = await $fetch<Student[]>('/api/Dashboard/stats', {
       method: 'GET',
     });
     
