@@ -41,9 +41,9 @@
               </template>
               <template v-if="column.key === 'id'">{{ student.id }}</template>
               <template v-if="column.key === 'name'">{{ student.name }}</template>
-              <!-- <template v-if="column.key === 'english'">{{ student.subjects.english }}%</template> -->
-              <template v-if="column.key === 'maths'">{{ student.subjects.Mathematics }}%</template>
-              <template v-if="column.key === 'currentGPA'">{{ student.gpa }}</template>
+              <template v-if="column.key === 'English'">{{ student.subjects.English }}</template>
+              <template v-if="column.key === 'Mathematics'">{{ student.subjects.Mathematics }}</template>
+              <template v-if="column.key === 'gpa'">{{ student.gpa }}</template>
 
               <!-- <template v-else>
                 {{ student[column.key as keyof Student] }}
@@ -68,7 +68,8 @@ interface Marks {
     id: number,
     name: string,
     subjects: {
-      Mathematics: string
+      English: string,
+      Mathematics: string,
     },
     gpa: number
   }
@@ -78,7 +79,7 @@ const { data: students, pending, error } = await useFetch<Marks[]>('/api/Marks/r
 const columns = ref([
   { key: 'id', label: 'ID' },
   { key: 'name', label: 'Name' },
-  { key: 'english', label: 'English' },
+  { key: 'English', label: 'English' },
   { key: 'Mathematics', label: 'Maths' },
   { key: 'gpa', label: 'Current GPA' },
   { key: 'actions', label: 'Actions' },
@@ -87,10 +88,4 @@ const columns = ref([
 const viewStudent = (studentId: number) => {
   navigateTo("../components/MarksDetails.vue");
 }
-
-const data = ref([
-  { id: 1, name: "Alice Johnson", english: 23, maths: 12 , currentGPA: 3.8},
-  { id: 2, name: "Bob Smith", english: 23, maths: 12 , currentGPA: 3.5},
-  { id: 3, name: "Charlie Brown", english: 23, maths: 12 , currentGPA: 3.9},
-])
 </script>

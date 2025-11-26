@@ -58,6 +58,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const router = useRouter()
+
 interface Student {
   id: number
   name: string
@@ -79,6 +81,6 @@ const columns = ref([
 
 const viewStudent = (studentId: number) => {
   console.log(`Viewing student ID: ${studentId}`);
-  navigateTo("/api/Students/{id}");
+  router.push(`/students/${studentId}`);
 }
 </script>
