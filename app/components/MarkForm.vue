@@ -140,7 +140,7 @@ const submitMark = async () => {
 
 
 <template>
-  <div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
+  <div class="mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
     <h2 class="text-2xl font-semibold mb-6 text-gray-800">Add Mark Student</h2>
     
     <form @submit.prevent="submitMark" class="space-y-4">
