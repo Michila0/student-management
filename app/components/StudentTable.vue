@@ -78,9 +78,9 @@ const columns = ref([
   { key: 'grade', label: 'Grade' },
   { key: 'actions', label: 'Actions' },
 ])
-
 const viewStudent = (studentId: number) => {
+  navigateTo(`/students/${studentId}`);
   console.log(`Viewing student ID: ${studentId}`);
-  router.push(`/students/${studentId}`);
+
 }
 </script>

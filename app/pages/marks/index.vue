@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import AddStudentMark from './addStudentMark.vue';
-import MarksTable from '../components/MarksTable.vue';
+import MarksTable from '../../components/MarksTable.vue';
 </script>
 
 <template>

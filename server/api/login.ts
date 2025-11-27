@@ -25,6 +25,7 @@ export default defineEventHandler(async (event) => {
 
   const email = body.email
   const password = body.password
+  try{
   db.all('SELECT * FROM users where Email = ? and Password = ?', [email, password], (err, rows) => {
       if (err) {
           console.error('Error retrieving data:', err.message);
@@ -54,4 +55,11 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+}catch (error) {
+        console.error('Login database error:', error);
+        throw createError({
+            statusCode: 500,
+            statusMessage: 'Database error during login.'
+        });
+    }
 })
