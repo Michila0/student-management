@@ -33,7 +33,7 @@
             <td v-for="column in columns" :key="column.key" class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               <template v-if="column.key === 'actions'">
                 <button 
-                  @click="viewStudent(student.id)" 
+                  @click="viewMark(student.id)" 
                   class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-xs transition duration-150"
                 >
                   View
@@ -85,7 +85,7 @@ const columns = ref([
   { key: 'actions', label: 'Actions' },
 ])
 
-const viewStudent = (studentId: number) => {
-  navigateTo("../components/MarksDetails.vue");
+const viewMark = (studentId: number) => {
+  useRouter().push(`/marks/${studentId}`);
 }
 </script>
