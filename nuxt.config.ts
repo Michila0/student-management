@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       tailwindcss()
     ]
   },
-  modules: ['@nuxt/ui', '@nuxt/image', '@pinia/nuxt'],
+  modules: ['@nuxt/ui', '@nuxt/image', '@pinia/nuxt', '@nuxt/icon'],
   routeRules: {
     '/api/**': { proxy: 'http://edu-manage.us-east-2.elasticbeanstalk.com/api/**'}
   }

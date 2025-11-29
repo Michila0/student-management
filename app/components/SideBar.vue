@@ -6,7 +6,7 @@
       :ui="{
         link: 'text-xl pl-6'
       }"
-      class="p-10 text-xl" />
+      class="p-3 text-xl" />
   </div>
 </template>
 
