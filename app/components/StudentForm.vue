@@ -101,6 +101,7 @@ const createStudent = async () => {
       form.value = { name: '', email: '' , classRoom: ''}
     }
 
+
   } catch (err) {
     console.error('API call error:', err)
     errorMessage.value = 'An unexpected error occurred during the request.'

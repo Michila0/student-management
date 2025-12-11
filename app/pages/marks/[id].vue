@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-xl mx-auto mt-10 p-8 bg-white shadow-2xl rounded-xl">
-    <NuxtLink to="/marks" class="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block">
+    <NuxtLink to="/marks" class="text-black hover:text-green-500 text-sm mb-4 inline-block">
       &larr; Back to Marks List
     </NuxtLink>
     

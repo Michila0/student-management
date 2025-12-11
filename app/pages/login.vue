@@ -1,10 +1,4 @@
 <template>
-    <!-- <div class="h-20 bg-gray-950">
-        <div>
-            <NuxtImg class="flex justify-start h-18" src="/images/17975497.png" alt="Logo"/>
-        </div>
-        <div class="flex justify-end text-white h-18">register</div>
-    </div> -->
     <div class="h-screen flex items-center justify-center bg-gray-900">
     <UCard class="bg-gray-800 w-fit text-white">
         <template #header>
@@ -27,6 +21,14 @@
                 :loading="isLoading"
             />
         </UForm>
+        <template #footer>
+        <p class="text-sm text-center">
+          Already have an account? 
+          <ULink to="/register" class="text-secondary-400 hover:text-secondary-300 font-semibold">
+            Sign Up
+          </ULink>
+        </p>
+      </template>
     </UCard>
   </div>
 </template>
@@ -55,7 +57,7 @@ const login = async () => {
   isLoading.value = true
   
   try {
-    const respose = await $fetch('api/login', {
+    const respose = await $fetch('/api/Auth/Login', {
       method: 'POST',
       body: data.value 
     });

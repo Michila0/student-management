@@ -1,6 +1,6 @@
 <template>
   <div class="justify-end flex m-5">
-    <UButton color="info" icon="icon-circle-plus" to="/addStudentForm">Student</UButton>
+    <UButton color="info" icon="i-lucide-circle-plus" to="/addStudentForm">Add Students</UButton>
   </div>
 
   <div class="flex justify-center">

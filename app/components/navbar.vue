@@ -5,7 +5,7 @@
         <!-- <UButton color="info" icon="icon-circle-plus" to="/addStudentForm">New Student</UButton> -->
 
         <UIcon name="i-lucide-circle-user-round" class="size-10" />
-        <p class="text-xl font-semibold pl-5">{{ userStore.user.name }}</p>
+        <p class="text-xl font-semibold pl-5">{{ userStore.user.email }}</p>
       </div>
     </div>
 </template>

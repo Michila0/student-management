@@ -32,12 +32,19 @@
           >
             <td v-for="column in columns" :key="column.key" class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               <template v-if="column.key === 'actions'">
-                <button
-                  @click="viewStudent(student.id)" 
-                  class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-xs transition duration-150"
-                >
-                  View
-                </button>
+                <div class="flex space-x-2">
+
+                  <UButton
+                    @click="viewStudent(student.id)" 
+                    icon="i-lucide-scan-eye"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-sm transition duration-150"
+                  >  View
+                  </UButton>
+  
+                  <!-- <UButton color="success" icon="i-lucide-user-round-pen" to="/addStudentForm" class="bg-blue-500 hover:bg-blue-600">Add Student</UButton> -->
+                </div>
+
+                
               </template>
               <template v-else>
                 {{ student[column.key as keyof Student] }}
